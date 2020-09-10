@@ -5,7 +5,7 @@ module.exports = {
         console.log('Sending gif..');
         const Discord = require('discord.js');
         const gsearch = require('image-search-google');
-        const search = new gsearch('8d317a98238da0996', 'AIzaSyBrNXND0o93shYR3jmNaDMe7DtxOspkDNY');
+        const search = new gsearch(process.env.gse, process.env.gst);
         
         async function getPic() {
         var url;

@@ -84,7 +84,7 @@ module.exports = {
                 url = args[0];
             } catch (e) {
                 console.log(e);
-                url = await (await ytsearch(args.join(' '), {maxResults:1, key:'AIzaSyBrNXND0o93shYR3jmNaDMe7DtxOspkDNY'})).results[0].link;
+                url = await (await ytsearch(args.join(' '), {maxResults:1, key: process.env.gst })).results[0].link;
                 console.log(url);
             }
             
