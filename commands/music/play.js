@@ -64,7 +64,7 @@ module.exports = {
                     play(connection, message, isPlaylist);
                     
                 } else {
-                    if (server.botKilled) {
+                    if (!server.botKilled) {
                         server = null;
                         setTimeout(function() {
                             if (message.guild.voice) {
