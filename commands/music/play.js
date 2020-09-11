@@ -106,7 +106,7 @@ module.exports = {
         if (!servers[message.guild.id]) servers[message.guild.id] = {
             queue: [],
             datas: [],
-            botKilled = false
+            botKilled: false
         }
         var server = servers[message.guild.id];
         var url, urls = false;
