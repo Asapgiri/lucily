@@ -10,7 +10,7 @@ module.exports = {
                 server.queue.splice(i, 1);
             }
 
-            server.dispatcher.end();
+            server.dispatcher.end(false, true);
         } else {
             message.channel.send('It is bugs...');
         }
