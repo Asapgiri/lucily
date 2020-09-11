@@ -58,23 +58,23 @@ module.exports = {
             server.queue.shift();
             
             
-            server.dispatcher.on("finish", (isPlaylist = false, isDisconnect = false) => {
+            server.dispatcher.on("finish", (isPlaylist = false) => {
                 server.datas.shift();
                 if (server.queue[0]) {
                     play(connection, message, isPlaylist);
                     
                 } else {
-                    if (!isDisconnect) {
+                    if (!isPlaylist) {
                     setTimeout(() => {
                     message.guild.voice.connection.disconnect();
                     message.channel.send(new Discord.MessageEmbed()
                     .setColor('#d497e9')
-                    .setDescription('Disconnecting ...'))
+                    .setDescription('Disconnecting ... timeout'))
                     .then(msg => {
                         msg.delete({ timeout: 30000 })
                     });
                     callback();
-                    }, 600000);
+                    }, 6000);
                     }
                     else {
                     message.guild.voice.connection.disconnect();
