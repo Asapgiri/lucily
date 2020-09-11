@@ -6,13 +6,17 @@ module.exports = {
         const Discord = require('discord.js');
         var server = servers[message.guild.id];
         if (message.guild.voice) {
-            for (var i = server.queue.length - 1; i>=0; i--) {
-                server.queue.splice(i, 1);
+            try {
+                for (var i = server.queue.length - 1; i>=0; i--) {
+                    server.queue.splice(i, 1);
+                }
             }
+            catch {
 
+            }
             server.dispatcher.end(false, true);
-        } else {
-            message.channel.send('It is bugs...');
+            } else {
+            message.channel.send('I\'m not in a voice channel ...');
         }
     }
 }
