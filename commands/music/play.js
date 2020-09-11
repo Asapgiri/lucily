@@ -66,22 +66,23 @@ module.exports = {
                 } else {
                     if (!isDisconnect) {
                     setTimeout(600000);
-                    message.guild.voice.connection.disconnect().then(
+                    message.guild.voice.connection.disconnect();
                     message.channel.send(new Discord.MessageEmbed()
                     .setColor('#d497e9')
                     .setDescription('Disconnecting ...'))
                     .then(msg => {
                         msg.delete({ timeout: 30000 })
-                    }));
+                    });
                     }
-                    else
-                    message.guild.voice.connection.disconnect().then(
+                    else {
+                    message.guild.voice.connection.disconnect();
                         message.channel.send(new Discord.MessageEmbed()
                         .setColor('#d497e9')
                         .setDescription('Disconnecting ...'))
                         .then(msg => {
                             msg.delete({ timeout: 30000 })
-                        }));
+                        });
+                    }
                 }
             });
         }
