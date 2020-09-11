@@ -1,5 +1,6 @@
 module.exports = {
     name: 'stop',
+    usage: 'music',
     description: "Ez egy stop :3!",
     execute(message, args, servers) {
         const Discord = require('discord.js');
@@ -10,11 +11,6 @@ module.exports = {
             }
 
             server.dispatcher.end();
-            //message.guild.voice.connection.disconnect();
-            message.channel.send(new Discord.MessageEmbed()
-            .setColor('#d497e9')
-            .setDescription('Kilépés ...')
-            );
         } else {
             message.channel.send('It is bugs...');
         }

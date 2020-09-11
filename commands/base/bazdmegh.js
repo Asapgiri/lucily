@@ -1,5 +1,6 @@
 module.exports = {
     name: 'bazdmegh',
+    usage: 'base',
     description: "Ez egy lebaszás! (magadnak maybe)",
     execute(message, args, servers = null) {
         const Discord = require('discord.js');

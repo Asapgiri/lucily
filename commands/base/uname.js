@@ -1,5 +1,6 @@
 module.exports = {
     name: 'uname',
+    usage: 'base',
     description: "Sets a users nickname :3!",
     execute(message, args, servers = null) {
         const Discord = require('discord.js');
