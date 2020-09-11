@@ -64,7 +64,7 @@ module.exports = {
                     play(connection, message, isPlaylist);
                     
                 } else {
-                    if (isPlaylist) {
+                    if (server.botKilled) {
                     setTimeout(function() {
                     message.guild.voice.connection.disconnect();
                     message.channel.send(new Discord.MessageEmbed()
@@ -105,7 +105,8 @@ module.exports = {
 
         if (!servers[message.guild.id]) servers[message.guild.id] = {
             queue: [],
-            datas: []
+            datas: [],
+            botKilled = false
         }
         var server = servers[message.guild.id];
         var url, urls = false;

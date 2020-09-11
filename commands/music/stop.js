@@ -15,6 +15,7 @@ module.exports = {
             catch {
 
             }
+            server.botKilled = true
             server.dispatcher.end();
         } else {
             message.channel.send('I\'m not in a voice channel ...');
