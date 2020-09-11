@@ -65,7 +65,7 @@ module.exports = {
                     
                 } else {
                     if (!isDisconnect) {
-                    setTimeout(600000);
+                    setTimeout(() => {
                     message.guild.voice.connection.disconnect();
                     message.channel.send(new Discord.MessageEmbed()
                     .setColor('#d497e9')
@@ -73,6 +73,8 @@ module.exports = {
                     .then(msg => {
                         msg.delete({ timeout: 30000 })
                     });
+                    callback();
+                    }, 600000);
                     }
                     else {
                     message.guild.voice.connection.disconnect();
