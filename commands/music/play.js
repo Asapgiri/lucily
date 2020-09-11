@@ -64,13 +64,13 @@ module.exports = {
                     play(connection, message, isPlaylist);
                     
                 } else {
-                    message.guild.voice.connection.disconnect();
+                    message.guild.voice.connection.disconnect({ timeout: 100000 }).then(
                     message.channel.send(new Discord.MessageEmbed()
                     .setColor('#d497e9')
                     .setDescription('Disconnecting ...'))
                     .then(msg => {
                         msg.delete({ timeout: 7000 })
-                    });
+                    }));
                 }
             });
         }
