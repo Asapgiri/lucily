@@ -64,8 +64,9 @@ module.exports = {
                     play(connection, message, isPlaylist);
                     
                 } else {
+                    console.log(server.botKilled);
                     if (!server.botKilled) {
-                        server = null;
+                        servers[message.guild.id] = null;
                         setTimeout(function() {
                             if (message.guild.voice) {
                                 message.guild.voice.connection.disconnect();
@@ -79,7 +80,7 @@ module.exports = {
                         }, 300000);
                     }
                     else {
-                        server = null;
+                        servers[message.guild.id] = null;
                         message.guild.voice.connection.disconnect();
                         message.channel.send(new Discord.MessageEmbed()
                         .setColor('#d497e9')

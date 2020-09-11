@@ -4,6 +4,7 @@ module.exports = {
     description: "Ez egy stop :3!",
     execute(message, args, servers) {
         var server = servers[message.guild.id];
+        console.log(server);
         if (message.guild.voice) {
             try {
                 server.datas.splice(server.datas.length - 1, 1);

@@ -9,7 +9,7 @@ module.exports = {
         
         message.channel.send(new Discord.MessageEmbed()
         .setColor('#d497e9')
-        .setDescription('Skipping [' + server.datas[0].title + '](' + server.datas[0].url + ')'))
+        .setDescription(`Skipping [${server.datas[0].title}](${server.datas[0].url})${(server.queue[0]) ? '' : '\nNothing else to play ..'}`))
         .then(msg => {
             msg.delete({ timeout: 7000 })
         });
