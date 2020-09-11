@@ -11,12 +11,12 @@ module.exports = {
                     server.queue.splice(i, 1);
                     server.datas.splice(i, 1);
                 }
+                server.botKilled = true
+                server.dispatcher.end();
             }
             catch {
-
+                message.guild.voice.connection.disconnect();
             }
-            server.botKilled = true
-            server.dispatcher.end();
         } else {
             message.channel.send('I\'m not in a voice channel ...');
         }

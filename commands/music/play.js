@@ -65,18 +65,20 @@ module.exports = {
                     
                 } else {
                     if (!server.botKilled) {
-                    setTimeout(function() {
-                    message.guild.voice.connection.disconnect();
-                    message.channel.send(new Discord.MessageEmbed()
-                    .setColor('#d497e9')
-                    .setDescription('Disconnecting ... timeout'))
-                    .then(msg => {
-                        msg.delete({ timeout: 30000 })
-                    });
-                    }, 900000);
+                        setTimeout(function() {
+                            if (message.guild.voice) {
+                                message.guild.voice.connection.disconnect();
+                                message.channel.send(new Discord.MessageEmbed()
+                                .setColor('#d497e9')
+                                .setDescription('Disconnecting ... timeout'))
+                                .then(msg => {
+                                    msg.delete({ timeout: 30000 })
+                                });
+                            }
+                        }, 900000);
                     }
                     else {
-                    message.guild.voice.connection.disconnect();
+                        message.guild.voice.connection.disconnect();
                         message.channel.send(new Discord.MessageEmbed()
                         .setColor('#d497e9')
                         .setDescription('Disconnecting ...'))
