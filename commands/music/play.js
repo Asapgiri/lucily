@@ -126,7 +126,7 @@ module.exports = {
             } catch (e) {
                 if (!args[0].includes("playlist")) {
                     //console.log(e);
-                    url = (await ytsearch(args.join(' '), {maxResults:1, key: process.env.googleyt_api_token })).results[0].link;
+                    url = (await ytsearch(args.join(' '), { maxResults:1, key: process.env.googleyt_api_token })).results[0].link;
                     //console.log(url);
                 }
                 else if (args[0].includes("playlist")) {

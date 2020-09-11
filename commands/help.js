@@ -28,13 +28,14 @@ module.exports = {
             }
         });
 
-        console.log(usages);
+        //console.log(usages);
         types.forEach(type => {
             type = `${type}`;
-            console.log(type.charAt(0).toUpperCase() + type.slice(1) + ' commands: \n' + usages[type]);
+            //console.log(type.charAt(0).toUpperCase() + type.slice(1) + ' commands: \n' + usages[type]);
             text += `${type.charAt(0).toUpperCase() + type.slice(1)} commands: \`\`\`${usages[type]}\`\`\``;
 
         })
+        console.log(`${message.giuld.name} - Help requested.`)
         message.channel.send(new Discord.MessageEmbed()
         .setColor('#d497e9')
         .setTitle("Help:")
