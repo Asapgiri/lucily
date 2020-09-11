@@ -35,7 +35,7 @@ module.exports = {
             //console.log(`${memb} - ${members} - ${sum}`);
             text = message.author.toString() + ' felpofozza: ' + 
             memb.toString() + ' -t. :\'3'
-        } else if (message.guild.member(message.mentions.users.first()).id == message.author.id) {
+        } else if (message.mentions.users.first() && message.guild.member(message.mentions.users.first()).id == message.author.id) {
             text = message.author.toString() + ' felpofozza saját magát. :\'3'
         } else {
             text = message.author.toString() + ' felpofozza: ' + args[0] + ' -t. :3'
