@@ -65,8 +65,8 @@ module.exports = {
                     
                 } else {
                     if (server.botKilled) {
+                        server = null;
                         setTimeout(function() {
-                            server = null;
                             if (message.guild.voice) {
                                 message.guild.voice.connection.disconnect();
                                 message.channel.send(new Discord.MessageEmbed()
