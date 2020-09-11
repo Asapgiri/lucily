@@ -64,7 +64,7 @@ module.exports = {
                     play(connection, message, isPlaylist);
                     
                 } else {
-                    if (server.botKilled) {
+                    if (!server.botKilled) {
                     setTimeout(function() {
                     message.guild.voice.connection.disconnect();
                     message.channel.send(new Discord.MessageEmbed()
@@ -73,7 +73,7 @@ module.exports = {
                     .then(msg => {
                         msg.delete({ timeout: 30000 })
                     });
-                    }, 6000);
+                    }, 900000);
                     }
                     else {
                     message.guild.voice.connection.disconnect();
