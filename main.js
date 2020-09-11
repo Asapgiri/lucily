@@ -108,4 +108,4 @@ client.on('message', message => {
 
 });
 
-client.login('NzUyOTQyMTMwOTI1Nzk3NTI4.X1e-AQ.9ynDPe4sitpIVW7zWEpfBpMCZrc');
+client.login(process.env.token);
