@@ -64,8 +64,9 @@ module.exports = {
                     play(connection, message, isPlaylist);
                     
                 } else {
-                    if (!server.botKilled) {
+                    if (server.botKilled) {
                         setTimeout(function() {
+                            server = null;
                             if (message.guild.voice) {
                                 message.guild.voice.connection.disconnect();
                                 message.channel.send(new Discord.MessageEmbed()
@@ -75,9 +76,10 @@ module.exports = {
                                     msg.delete({ timeout: 30000 })
                                 });
                             }
-                        }, 900000);
+                        }, 300000);
                     }
                     else {
+                        server = null;
                         message.guild.voice.connection.disconnect();
                         message.channel.send(new Discord.MessageEmbed()
                         .setColor('#d497e9')
@@ -85,7 +87,6 @@ module.exports = {
                         .then(msg => {
                             msg.delete({ timeout: 30000 })
                         });
-                        server.botKilled = false;
                     }
                 }
             });
