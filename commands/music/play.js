@@ -85,6 +85,7 @@ module.exports = {
                         .then(msg => {
                             msg.delete({ timeout: 30000 })
                         });
+                        server.botKilled = false;
                     }
                 }
             });
