@@ -94,7 +94,7 @@ module.exports = {
             });
         }
 
-        if (!args[0]) {
+        if (!args[0]) { // && !server.datas) {
             message.channel.send(new Discord.MessageEmbed()
             .setColor('#d497e9')
             .setDescription('Nincs url!'));
@@ -125,6 +125,7 @@ module.exports = {
                 if (args[0].includes("playlist")) throw 'It is a playlist!!';
                 url = args[0];
             } catch (e) {
+                //if (!args) { play(connection, message); }
                 if (!args[0].includes("playlist")) {
                     //console.log(e);
                     url = (await ytsearch(args.join(' '), { maxResults:1, key: process.env.googleyt_api_token })).results[0].link;
