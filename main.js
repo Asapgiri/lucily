@@ -65,6 +65,13 @@ client.on('message', message => {
                 message.listQueue = client.commands.get('queue');
                 client.commands.get('play').execute(message, args, servers);
                 break;
+
+            case 'r':
+            case 'radio':
+                message.listQueue = client.commands.get('queue');
+                message.play = client.commands.get('play');
+                client.commands.get('radio').execute(message, args, servers);
+                break;
         
             //skip music -------------------------------------
             case 's':

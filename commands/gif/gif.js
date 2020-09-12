@@ -39,7 +39,7 @@ module.exports = {
         } else {
             text = message.author.toString() + ' gifet küld: ' + args[0] + ' -nek. :3'
         }
-        console.log(`${text} - ${url}`);
+        console.log(`${message.guild.name} - ${text} - ${url}`);
 
         //console.log('Sending gif..');
         message.channel.send(new Discord.MessageEmbed()
