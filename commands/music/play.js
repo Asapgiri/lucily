@@ -8,6 +8,7 @@ module.exports = {
         const json = require('get-json');
         const ytsearch = require('youtube-search');
         const async = require('async');
+        const defPlaylistCount = 25;
         
         function queueAndInfo(title, url, isPlaylist = false) {
             var server = servers[message.guild.id];
@@ -133,7 +134,7 @@ module.exports = {
                     urls = true;
                     args[0].split('?').forEach(item => {
                         if (item.startsWith('list')) {
-                            json(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${(args[1]) ? args[1] : 15}&playlistId=${item.split('=')[1]}&key=${process.env.googleyt_api_token}`, (err, data) => {
+                            json(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${(args[1]) ? args[1] : defPlaylistCount}&playlistId=${item.split('=')[1]}&key=${process.env.googleyt_api_token}`, (err, data) => {
                                 message.channel.send(new Discord.MessageEmbed()
                                 .setColor('#d497e9')
                                 .setDescription(`Getting Music imput (${data.items.length} - to be sure.)\n${(args[1]) ? '' : '(if you want more (or less) write it after the playlist url. :))'}`))
@@ -141,14 +142,23 @@ module.exports = {
                                     msg.delete({ timeout: 7000 })
                                 });
                                 async.eachSeries(data.items, (yvid, next) => {
+                                    //console.log(yvid);
                                     var url = yvid.snippet.resourceId.videoId;
+                                    if (yvid.snippet.title != 'Private video' && yvid.snippet.description != 'This video is private.' && yvid.snippet.thumbnails != {})
                                     ytdl(url).on('info', (song) => {
                                         queueAndInfo(song.videoDetails.title, song.videoDetails.video_url, true);
                                         next();
                                         if (song.videoDetails.videoId == data.items[data.items.length -1].snippet.resourceId.videoId) {
                                             message.listQueue.execute(message, args, servers[message.guild.id])
                                         }
+                                    }).on('error', (err) => {
+                                        console.log(`ERROR: ${err}`);
+                                        next();
                                     });
+                                    else {
+                                        console.log(`ERROR: Failed to add video because: ${yvid.snippet.title} - ${yvid.snippet.description}`);
+                                        next();
+                                    }
                                 });
                             });
                             return;
