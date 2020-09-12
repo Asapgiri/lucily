@@ -12,7 +12,8 @@ module.exports = {
             lineFirst: 1,
             text: ''
         });
-        if (server.datas.forEach(info => {
+        try { 
+            server.datas.forEach(info => {
             if (pages[pageCtn].lineCtn < linePerPage && pages[pageCtn].text.length < 1940) {
                 pages[pageCtn].text += '\n**' + ++i + '**.: **[' + info.title + '](' + info.url + ')' + ((i==1) ? ' -> \[now playing\]' : '') + '**';
                 pages[pageCtn].lineCtn++;
@@ -25,7 +26,9 @@ module.exports = {
                 });
                 pageCtn++;
             }
-        })) {
+        })
+        }
+        catch {
             pages[0].text = "No songs to show.";
         }
 
@@ -39,7 +42,7 @@ module.exports = {
                 console.log(page.text.length);
                 msg.edit(new Discord.MessageEmbed()
                 .setColor('#d497e9')
-                .setTitle(`Queue(${page.lineFirst}-${page.lineFirst+page.lineCtn-1}):`)
+                .setTitle(`Queue(${page.lineFirst}-${page.lineFirst+page.lineCtn-1}:${i}):`)
                 .setDescription(page.text)).then((msg) => {
                     if (pageCtn > 0) {
                         //console.log(msg);
@@ -69,9 +72,10 @@ module.exports = {
         //pages.forEach(page => {
             message.channel.send(new Discord.MessageEmbed()
             .setColor('#d497e9')
-            .setTitle(`Queue():`)).then((msg) =>
-                listQueue(0, msg));
+            .setTitle(`Queue():`)
+            .setDescription(pages[0].text)).then((msg) => {
+                if (server) listQueue(0, msg);
+            });
         //});
-
     }
 }

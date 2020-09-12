@@ -98,6 +98,10 @@ client.on('message', message => {
                 //console.log(servers[message.guild.id].datas);
                 break;
 
+            case 'gt':
+                client.commands.get('gt').execute(message, args, servers);
+                break;
+
             default:
                 //if (message.member.roles.cache.has('720273044035076116') || message.member.hasPermission("ADMINISTRATOR")) {
                     //if (message.member.hasPermission("ADMINISTRATOR") && !message.member.roles.cache.has('720273044035076116')) message.channel.send('Lő with admin perm!');
