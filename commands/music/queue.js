@@ -15,14 +15,14 @@ module.exports = {
         try { 
             server.datas.forEach((info, i) => {
             if (pages[pageCtn].lineCtn < linePerPage && pages[pageCtn].text.length < 1940) {
-                pages[pageCtn].text += '\n**' + i+1 + '**.: **[' + info.title + '](' + info.url + ')' + ((i==1) ? ' -> \[now playing\]' : '') + '**';
+                pages[pageCtn].text += '\n**' + (i+1) + '**.: **[' + info.title + '](' + info.url + ')' + ((i==1) ? ' -> \[now playing\]' : '') + '**';
                 pages[pageCtn].lineCtn++;
             }
             else {
                 pages.push({
                     lineCtn: 0,
                     lineFirst: i+1,
-                    text: '\n**' + i+1 + '**.: **[' + info.title + '](' + info.url + ')' + ((i==1) ? ' -> \[now playing\]' : '') + '**'
+                    text: '\n**' + (i+1) + '**.: **[' + info.title + '](' + info.url + ')' + ((i==1) ? ' -> \[now playing\]' : '') + '**'
                 });
                 pageCtn++;
             }
