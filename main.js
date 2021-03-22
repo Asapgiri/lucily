@@ -34,7 +34,7 @@ walk('commands', function(err, results) {
     //console.log(results.filter(file => file.endsWith('.js')));
     results.filter(file => file.endsWith('.js')).forEach(file => {
         const command = require(file);
-        console.log('message: ' + prefix + command.name + ' - ' + command.usage + chalk.green(' found.   ') + file);
+        console.log('message: ' + prefix + command.name + '    \t- ' + ((command.usage == 'nsfw') ? chalk.red(command.usage) : (command.usage == 'gif') ? chalk.yellow(command.usage) : (command.usage == 'music') ? chalk.blueBright(command.usage) : (command.usage == 'base') ? chalk.yellowBright(command.usage) : command.usage) + chalk.green(' found.     \t') + file);
         client.commands.set(command.name, command);
     })
 });
@@ -59,6 +59,9 @@ client.on('message', message => {
     
     try {
         switch (command) {
+            case 'reset':
+                
+                break;
             //play music ---------------------------------
             case 'p':
             case 'play':
@@ -105,7 +108,9 @@ client.on('message', message => {
             default:
                 //if (message.member.roles.cache.has('720273044035076116') || message.member.hasPermission("ADMINISTRATOR")) {
                     //if (message.member.hasPermission("ADMINISTRATOR") && !message.member.roles.cache.has('720273044035076116')) message.channel.send('Lő with admin perm!');
-                    client.commands.get(command).execute(message, args);
+                    //if (client.commands.get(command).usage == 'nsfw')
+                    if (client.commands.get(command).usage == 'nsfw' && !message.channel.nsfw) message.reply('This channel is does not support NSFW content. Please try another one.');
+                    else client.commands.get(command).execute(message, args, client);
                 //}
         }
     } catch (e) {
